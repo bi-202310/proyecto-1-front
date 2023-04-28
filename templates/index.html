@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Sentimiento de reseña</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <header>
+      <h1>Análisis de sentimientos de reseñas</h1>
+    </header>
+    <main>
+      <p>En esta página puedes determinar, mediante un modelo de machine learning supervisado entrenado por nosotros, si una reseña que ingreses manifiesta un sentimiento positivo o negativo.</p>
+      <form action="/predict" method="POST" enctype="multipart/form-data">
+        <label for="review">Reseña:</label>
+        <textarea id="review" name="review" rows="10" cols="50"></textarea>
+        <label for="model">¿Qué modelo quieres usar?:</label>
+        <select id="model" name="model">
+          <option value="bow-rf">Bag of Words Random Forest</option>
+          <option value="tfidf-gb">TF-IDF Gradient Boosting</option>
+          <option value="tfidf-rf">TF-IDF Random Forest</option>
+          <option value="tfidf-nb">TF-IDF Naive Bayes</option>
+        </select>
+        <br>
+        <input type="submit" value="Predecir">
+        {% if prediction %}
+        <div class="prediction">
+          <p>Este review es {{ prediction }}</p>
+        </div>
+        {% endif %}
+      </form>
+    </main>
+  </body>
+</html>
