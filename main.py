@@ -22,11 +22,6 @@ def predict():
     # Parse the prediction from the API response
     prediction = response.json()
 
-    if prediction == 'positive':
-        prediction = 'Positivo'
-    else:
-        prediction = 'Negativo'
-
     # Render the HTML template with the prediction
     return render_template('index.html', prediction=prediction)
 
